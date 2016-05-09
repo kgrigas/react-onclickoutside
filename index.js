@@ -165,7 +165,11 @@
          */
         render: function() {
           var passedProps = this.props;
-          var props = { ref: 'instance' };
+          var props = {
+            ref: 'instance',
+            enableOnClickOutside: this.enableOnClickOutside,
+            disableOnClickOutisde: this.disableOnClickOutisde
+          };
           Object.keys(this.props).forEach(function(key) {
             props[key] = passedProps[key];
           });
