@@ -1,8 +1,11 @@
 {
   "name": "react-onclickoutside",
-  "version": "5.0.0",
-  "description": "An onClickOutside mixin for React components",
+  "version": "5.11.1",
+  "description": "An onClickOutside wrapper for React components",
   "main": "index.js",
+  "files": [
+    "index.js"
+  ],
   "homepage": "https://github.com/Pomax/react-onclickoutside",
   "authors": [
     "Pomax <pomax@nihongoresources.com>"
@@ -22,24 +25,32 @@
     "url": "https://github.com/Pomax/react-onclickoutside/issues"
   },
   "scripts": {
-    "test": "karma start test/karma.conf.js --single-run"
+    "test": "npm run lint && karma start test/karma.conf.js --single-run && npm run test:nodom",
+    "test:nodom": "mocha test/no-dom-test.js",
+    "lint": "eslint index.js ./test",
+    "precommit": "npm run lint"
   },
   "dependencies": {
-    "object-assign": "^4.0.1"
+    "create-react-class": "^15.5.x"
   },
   "devDependencies": {
+    "babel-preset-es2015": "^6.14.0",
     "chai": "^3.5.0",
-    "karma": "^0.13.22",
+    "eslint": "^3.4.0",
+    "karma": "^1.4.0",
+    "karma-babel-preprocessor": "^6.0.1",
     "karma-chai": "^0.1.0",
-    "karma-mocha": "^0.2.2",
+    "karma-mocha": "^1.3.0",
     "karma-phantomjs-launcher": "^1.0.0",
-    "karma-spec-reporter": "0.0.25",
-    "karma-webpack": "^1.7.0",
-    "mocha": "^2.4.5",
+    "karma-spec-reporter": "0.0.26",
+    "karma-webpack": "^2.0.2",
+    "mocha": "^3.2.0",
     "phantomjs-prebuilt": "^2.1.7",
-    "react": "^15.0.0",
-    "react-addons-test-utils": "^15.0.0",
-    "react-dom": "^15.0.0",
+    "react": "^15.5.x",
+    "react-addons-test-utils": "^15.5.x",
+    "react-dom": "^15.5.x",
+    "react-test-renderer": "^15.5.x",
+    "require-hijack": "^1.2.1",
     "webpack": "^1.12.14"
   }
 }
