@@ -1,33 +1,33 @@
 module.exports = function(config) {
   config.set({
-
-    files: [
-      'test.js'
-    ],
+    files: ['test.js'],
 
     frameworks: ['mocha', 'chai'],
 
     preprocessors: {
-      'test.js': ['webpack', 'babel']
-    },
-
-    babelPreprocessor: {
-      options: {
-        presets: ['es2015'],
-        sourceMap: 'inline'
-      },
-      filename: function (file) {
-        return file.originalPath.replace(/\.js$/, '.es5.js');
-      },
-      sourceFileName: function (file) {
-        return file.originalPath;
-      }
+      'test.js': ['webpack'],
     },
 
     reporters: ['spec'],
 
+    webpack: {
+      devtool: 'inline-source-map',
+      module: {
+        loaders: [
+          {
+            test: /.js$/,
+            loader: 'babel',
+            query: {
+              presets: ['env', 'stage-0'],
+            },
+          },
+        ],
+      },
+    },
+
     webpackMiddleware: {
-      noInfo: true
+      noInfo: true,
+      stats: { errorDetails: true },
     },
 
     plugins: [
@@ -36,10 +36,8 @@ module.exports = function(config) {
       require('karma-chai'),
       require('karma-phantomjs-launcher'),
       require('karma-spec-reporter'),
-      require('karma-babel-preprocessor')
     ],
 
-    browsers: ['PhantomJS']
-
+    browsers: ['PhantomJS'],
   });
 };
